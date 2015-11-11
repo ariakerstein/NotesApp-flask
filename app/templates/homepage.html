@@ -79,18 +79,25 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+  <div class="page-header">
+  <h1>Distraqt <br><small>Play your work. Achieve flow.</small></br></h1>
 
-    <div class="container content">
-      <div class="jumbotron">
-        <h2>Distraqt</h2>
-        <p><i>Play your work. Achieve flow.</i></p>
-
-      <form action="." class="form" id="note-form" method="post">
+        <form action="." class="form" id="note-form" method="post">
         <button class="btn btn-primary btn-xs" type="submit">
           <span class="glyphicon glyphicon-plus"></span> Add Note
         </button>
-        <textarea class="form-control" id="content" name="content"></textarea>
+        <textarea class="form-control" id="content" name="content" placeholder="What'll you work on?"></textarea>
+                <h1><span id="time">25:00</span></h1>
       </form>
+</div>
+
+
+
+    <div class="container content">
+      <div class="jumbotron">
+<!--         <h2>Distraqt</h2>
+        <p><i>Play your work. Achieve flow.</i></p> -->
+
       <br></br>
       <ul class="list-unstyled notes">
         {% for note in notes %}

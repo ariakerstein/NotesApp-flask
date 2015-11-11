@@ -11,6 +11,8 @@ class Note(Model):
     content = TextField()
     timestamp = DateTimeField(default=datetime.datetime.now)
     archived = BooleanField(default=False)
+    # category = TextField()
+    # title = TextField()
 
     class Meta:
         database = db

@@ -51,7 +51,7 @@ Notes = window.Notes || {};
       e.preventDefault();
       self.addNote();
     });
-    this.addMarkdownHelpers();
+    // this.addMarkdownHelpers();
   }
 
   Editor.prototype.addNote = function() {
@@ -70,27 +70,27 @@ Notes = window.Notes || {};
     });
   }
 
-  Editor.prototype.addMarkdownHelpers = function() {
-    var self = this;
-    this.addHelper('indent-left', function(line) {
-      return '    ' + line;
-    });
-    this.addHelper('indent-right', function(line) {
-      return line.substring(4);
-    });
-    this.addHelper('list', function(line) {
-      return '* ' + line;
-    });
-    this.addHelper('bold', function(line) {
-      return '**' + line + '**';
-    });
-    this.addHelper('italic', function(line) {
-      return '*' + line + '*';
-    });
-    this.addHelper('font', null, function() {
-      self.focus().select();
-    });
-  }
+  // Editor.prototype.addMarkdownHelpers = function() {
+  //   var self = this;
+  //   this.addHelper('indent-left', function(line) {
+  //     return '    ' + line;
+  //   });
+  //   this.addHelper('indent-right', function(line) {
+  //     return line.substring(4);
+  //   });
+  //   this.addHelper('list', function(line) {
+  //     return '* ' + line;
+  //   });
+  //   this.addHelper('bold', function(line) {
+  //     return '**' + line + '**';
+  //   });
+  //   this.addHelper('italic', function(line) {
+  //     return '*' + line + '*';
+  //   });
+  //   this.addHelper('font', null, function() {
+  //     self.focus().select();
+  //   });
+  // }
 
   Editor.prototype.addHelper = function(iconClass, lineHandler, callBack) {
     var link = $('<a>', {'class': 'btn btn-xs'}),
