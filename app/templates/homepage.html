@@ -8,10 +8,9 @@
     <title>Distraqt</title>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
     <script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
-
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
     <script src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/notes.js') }}"></script>
     
@@ -89,18 +88,44 @@
 
       
 </div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Let's Flow!</button>
+</div>
 
 <!--start http://www.sitepoint.com/understanding-bootstrap-modals/-->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Let's Flow!</button>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">Flow Block</h4>
+        <div id="hiddenDiv2"></div>
+        <h4 class="modal-title" id="ModalLabel">Flow Block Title</h4>
       </div>
       <div class="modal-body">
+
+      <form>
+<!-- <FORM action="http://somesite.com/prog/adduser" method="post"> -->
+    <div class="form-group">
+                <!--<label for="flowNow"></label>-->
+        <input type="text" class="form-control" id="flowNow" placeholder="What'll you work on?">
+<!--         <div id="hiddenDiv2"> -->
+<!--         <INPUT type="submit" value="Send"> <INPUT type="reset"> -->
+            <h1><span id="time">25:00</span></h1>
+        </form>
+
+        <div class="btn-group" role="group" >
+            <button type="button" id=startButton class="btn btn-default">Let's Flow!</button>
+            <button type="button" id=stopButton class="btn btn-default">Stop</button>
+            <button type="button" id=resetButton class="btn btn-default">Reset</button>
+        </div>
+
+
+ </FORM>
+
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+
 <!--         <form>
           <div class="form-group">
             <label for="recipient-name" class="control-label">Title:</label>
@@ -112,15 +137,16 @@
           </div>
         </form> -->
 
- <form action="." class="form" id="note-form" method="post">
-        <button class="btn btn-primary btn-xs" type="submit">
-          <span class="glyphicon glyphicon-plus"></span> Save flow block!
-        </button>
-        <textarea class="form-control" id="content" name="content" placeholder="What'll you work on?"></textarea>
-      </form>
+
 
       </div>
       <div class="modal-footer">
+       <form action="." class="form" id="note-form" method="post">
+        <textarea class="form-control" id="content" name="content" placeholder="Notes on your work"></textarea>
+              <button class="btn btn-default" type="submit">
+          <span class="glyphicon glyphicon-plus"></span> Save flow block!
+        </button>
+      </form>
 <!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save</button> -->
       </div>
@@ -152,7 +178,6 @@
 
   </body>
 </html>
-
 
     </div>
   </body>
