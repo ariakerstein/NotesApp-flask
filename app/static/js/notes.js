@@ -42,11 +42,11 @@ Notes = window.Notes || {};
 
   Editor.prototype.setupForm = function() {
     var self = this;
-    this.editor.on('keydown', function(e) {
-      if (e.ctrlKey && e.keyCode == 13) {
-        self.form.submit();
-      }
-    });
+    // this.editor.on('keydown', function(e) {
+    //   if (e.ctrlKey && e.keyCode == 13) {
+    //     self.form.submit();
+    //   }
+    // });
     this.form.submit(function(e) {
       e.preventDefault();
       self.addNote();
@@ -54,6 +54,7 @@ Notes = window.Notes || {};
     // this.addMarkdownHelpers();
   }
 
+//this adds the note:
   Editor.prototype.addNote = function() {
     var self = this;
     this.editor.css('color', '#464545');
@@ -65,7 +66,8 @@ Notes = window.Notes || {};
         self.container.prepend(listElem);
         self.container.masonry('prepended', listElem);
       } else {
-        self.editor.css('color', '#dd1111');
+        alert("Please add some content to your note"); //test alert
+        // self.editor.css('color', '#dd1111');
       }
     });
   }
