@@ -12,8 +12,11 @@ def get_page():
 @app.route('/', methods=['GET', 'POST'])
 def homepage():
     if request.method == 'POST':
+        #create a new note in the db
         if request.form.get('content'):
             note = Note.create(content=request.form['content'])
+
+            # Render a single note panel and return the HTML.
             rendered = render_template('note.html', note=note)
             return jsonify({'note': rendered, 'success': True})
 
