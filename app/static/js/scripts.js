@@ -50,7 +50,6 @@ function startTimer() {
     workTime--;
     if (workTime < 0) {
       clearInterval(timer);
-      timer = breakTimer();
     } else {
       showTime(workTime);
     }

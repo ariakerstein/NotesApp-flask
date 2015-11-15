@@ -25,6 +25,11 @@ def homepage():
     notes = Note.public().paginate(get_page(), 50)
     return render_template('homepage.html', notes=notes)
 
+
+# @app.route('/about')
+# def about():
+#     return("/about.html")
+
 @app.route('/archive/<int:pk>/', methods=['POST'])
 def archive_note(pk):
     try:
