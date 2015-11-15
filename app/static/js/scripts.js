@@ -1,46 +1,195 @@
 // alert("test")
 
+//http://codereview.stackexchange.com/questions/102456/pomodoro-timer-via-setinterval
 
-$( document ).ready(function() {
-$('button').on('click', function() {
-var message = $('#flowNow').val().substring();
-//   $('<span><h2>Here is what you are working on!</h2></span>');
-  $('#flowNow').remove();
-  // $('#hiddenDiv2').append('<h2>In progress: </h2>' + message);
-//   $('.flowNow').remove('#time');
-//   $('button').remove();
+var timer;
+
+$(document).ready(function(){
+var working = false;
+var active = '';
+var workTime = 0;
+var breakTime = 0;
+checkStatus();
+
+  //Test Vars
+
+/*  Alternate Method of 'checkStatus Function'
+
+working ? $('#pause').addClass('disabled')&& $('#start').removeClass('disabled'): $('#start').addClass('disabled')&& $('#pause').removeClass('disabled');
+ */
+
+  //Controls if a button is disabled based on status of timer
+function checkStatus() {
+  if (!working) {
+    $('#start').removeClass('disabled');
+    $('#pause').addClass('disabled');
+    $('#reset').addClass('disabled');
+    } else {
+    $('#pause').removeClass('disabled');
+    $('#reset').removeClass('disabled');
+    $('#start').addClass('disabled');
+    }
+}
+//End Check Status
+    //Function to Show Time  !!Finished!!
+    function showTime(time) {
+   var min = Math.floor(time/60);
+   var sec = Math.round(time%60);
+      if (sec < 10) {
+        sec = '0' + sec
+      }
+      var timeString = min+':'+sec
+      $('#msg').text("" + timeString+" remaining")
+     }
+  //End showTime
+  //Enables the timer  !!Mostly Finished!!
+function startTimer() {
+  $('.jumbotron').css('visibility', 'visible');
+  return setInterval(function() {
+    console.log("Flow Timer...")
+    workTime--;
+    if (workTime < 0) {
+      clearInterval(timer);
+      timer = breakTimer();
+    } else {
+      showTime(workTime);
+    }
+  }, 1000);
+}
+  //End Timer
+  //What Happens when #start is pressed
+ function start() {     
+   if (working == true){ //This keeps it from being spammable
+      return
+   } //Else
+  workTime = $('#work').val()*60;
+    breakTime = $('#break').val()*60;
+   working = true;
+   checkStatus();    
+    timer = startTimer();
+ } 
+  
+  
+  //What Happens when #pause/resume is pressed
+  function pause() {
+    clearInterval(timer);
+    $('.resume').unbind().click(resume);
+    $('#pause').html('Resume');
+    $('#pause').addClass('resume');
+    $('#pause').removeClass('pause');
+    $('.resume').click(resume);
+   }
+  
+  
+  function resume(){  
+    $('#pause').unbind().click(pause);
+    $('#pause').html('Pause');
+    $('#pause').addClass('pause');
+    $('#pause').removeClass('resume');
+    timer = startTimer();
+    }
+  //What happens when #reset is pressed
+  function reset() {
+   clearInterval(timer);
+    working = false;
+    workTime = 0;
+    breakTime = 0;
+    checkStatus();
+    // $('.jumbotron').css('visibility', 'hidden');
+    $('#msg').html("");
+  }
+  //Break Timer
+//   function breakTimer() {
+//     $('.jumbotron').css('visibility', 'visible');
+//     return setInterval(function() {
+//       console.log("Break Timer...");
+//     breakTime--;
+//     if (breakTime < 0) {
+//       clearInterval(timer);
+//       working = false;
+//       start();
+//     } else {
+//       showTime(breakTime);
+//     }
+//   }, 1000);
+// }
+  //Button Association
+  $('#start').click(start);
+    $('#work').keypress(function(e) {
+    if(e.which == 13) {
+       start();
+    }
+});
+  //This Makes Enter Work as well to Start
+  $('.pause').click(pause);
+  $('#reset').click(reset); 
+  
+}); //End of DocReady
+
+
+
+// ORIGINAL TIMER START
+
+// $( document ).ready(function() {
+// $('button').on('click', function() {
+// var message = $('#flowNow').val().substring();
+// //   $('<span><h2>Here is what you are working on!</h2></span>');
+//   $('#flowNow').remove();
+//   // $('#hiddenDiv2').append('<h2>In progress: </h2>' + message);
+// //   $('.flowNow').remove('#time');
+// //   $('button').remove();
  
   
-});
-});
+// });
+// });
 
-//timer function
-$('#startButton').on('click', function() {
-// var message = $('#flowNow').val().substring();
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10)
-        seconds = parseInt(timer % 60, 10);
+// //timer function
+// $('#startButton').on('click', function() {
+// // var message = $('#flowNow').val().substring();
+// function startTimer(duration, display) {
+//     var timer = duration, minutes, seconds;
+//     setInterval(function () {
+//         minutes = parseInt(timer / 60, 10)
+//         seconds = parseInt(timer % 60, 10);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+//         minutes = minutes < 10 ? "0" + minutes : minutes;
+//         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        display.text(minutes + ":" + seconds);
+//         display.text(minutes + ":" + seconds);
 
-        if (--timer < 0) {
-            timer = alert("Great job! You're done");
-        }
-    }, 1000);
-}
+//         if (--timer < 0) {
+//             timer = alert("Great job! You're done");
+//         }
+//     }, 1000);
+// }
 
-$(function ($) {
-    var twentyFiveMinutes = 60 * 25,
-        display = $('#time');
-    startTimer(twentyFiveMinutes, display);
-});
-});
+// $('#stop').on('click', function() {
+// // var message = $('#flowNow').val().substring();
+// function stopTimer(duration, display) {
+//     var timer = duration, minutes, seconds;
+//     setInterval(function () {
+//         minutes = parseInt(timer / 60, 10)
+//         seconds = parseInt(timer % 60, 10);
 
+//         minutes = minutes < 10 ? "0" + minutes : minutes;
+//         seconds = seconds < 10 ? "0" + seconds : seconds;
+
+//         display.text(minutes + ":" + seconds);
+
+//         if (--timer < 0) {
+//             timer = alert("Great job! You're done");
+//         }
+//     }, 1000);
+// }
+
+// $(function ($) {
+//     var twentyFiveMinutes = 60 * 25,
+//         display = $('#time');
+//     startTimer(twentyFiveMinutes, display);
+// });
+// });
+
+// ORIGINAL TIMER START
 
 //New as of July 2015 - based on http://codepen.io/anon/pen/pJammE
 
