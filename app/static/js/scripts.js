@@ -32,7 +32,7 @@ function checkStatus() {
 }
 //End Check Status
     //Function to Show Time  !!Finished!!
-    function showTime(time) {
+   function showTime(time) {
    var min = Math.floor(time/60);
    var sec = Math.round(time%60);
       if (sec < 10) {
@@ -50,6 +50,7 @@ function startTimer() {
     workTime--;
     if (workTime < 0) {
       clearInterval(timer);
+      alert("done!");
     } else {
       showTime(workTime);
     }
