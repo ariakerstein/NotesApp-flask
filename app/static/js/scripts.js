@@ -25,11 +25,12 @@ function checkStatus() {
     $('#pause').addClass('disabled');
     $('#reset').addClass('disabled');
     $('#myAlert').hide();
+    $('#save').hide();
     } else {
     $('#pause').removeClass('disabled');
     $('#reset').removeClass('disabled');
     $('#start').addClass('disabled');
-    $('#save').addClass('disabled');
+    $('#save').hide();
     $('#myAlert').hide();
     }
 }
@@ -53,7 +54,7 @@ function startTimer() {
     workTime--;
     if (workTime < 0) {
       clearInterval(timer);
-      $('#save').removeClass('disabled');
+      $('#save').show();
       // alert("You're done!");
       $('#myAlert').show();
     } else {
@@ -84,7 +85,7 @@ function startTimer() {
     $('#pause').addClass('resume');
     $('#pause').removeClass('pause');
     $('.resume').click(resume);
-    $('#save').removeClass('disabled');
+    $('#save').show();
     $('#myAlert').hide();
     // $('#save').unbind().click(resume);
    }
@@ -95,7 +96,7 @@ function startTimer() {
     $('#pause').html('Pause');
     $('#pause').addClass('pause');
     $('#pause').removeClass('resume');
-	$('#save').addClass('disabled');
+	$('#save').hide();
     timer = startTimer();
     $('#myAlert').hide();
     }
@@ -108,6 +109,7 @@ function startTimer() {
     checkStatus();
     // $('.jumbotron').css('visibility', 'hidden');
     $('#msg').html("");
+    $('#myAlert').hide();
   }
   //Break Timer
 //   function breakTimer() {
