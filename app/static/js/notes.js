@@ -72,6 +72,7 @@ Notes = window.Notes || {};
         listElem.find('a.archive-note').on('click', self.archiveNote);
         self.container.prepend(listElem);
         self.container.masonry('prepended', listElem);
+        $('#exampleModal').hide();
       } else {
         $('#myAlert-fail').show() //test alert
         // self.editor.css('color', '#dd1111');
