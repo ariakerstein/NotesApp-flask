@@ -7,7 +7,7 @@ var timer;
 $(document).ready(function(){
 var working = false;
 var active = '';
-var workTime = 0;
+var workTime =0;
 var breakTime = 0;
 checkStatus();
 
@@ -28,6 +28,7 @@ function checkStatus() {
     $('#pause').removeClass('disabled');
     $('#reset').removeClass('disabled');
     $('#start').addClass('disabled');
+    $('#save').addClass('disabled');
     }
 }
 //End Check Status
@@ -44,13 +45,13 @@ function checkStatus() {
   //End showTime
   //Enables the timer  !!Mostly Finished!!
 function startTimer() {
-  $('.jumbotron').css('visibility', 'visible');
+  // $('.jumbotron').css('visibility', 'visible');
   return setInterval(function() {
     console.log("Flow Timer...")
     workTime--;
     if (workTime < 0) {
       clearInterval(timer);
-      alert("done!");
+      alert("You're done!");
     } else {
       showTime(workTime);
     }
@@ -63,7 +64,7 @@ function startTimer() {
       return
    } //Else
   workTime = $('#work').val()*60;
-    breakTime = $('#break').val()*60;
+    // breakTime = $('#break').val()*60;
    working = true;
    checkStatus();    
     timer = startTimer();
@@ -78,6 +79,8 @@ function startTimer() {
     $('#pause').addClass('resume');
     $('#pause').removeClass('pause');
     $('.resume').click(resume);
+    $('#save').removeClass('disabled');
+    // $('#save').unbind().click(resume);
    }
   
   
@@ -86,14 +89,15 @@ function startTimer() {
     $('#pause').html('Pause');
     $('#pause').addClass('pause');
     $('#pause').removeClass('resume');
+	$('#save').addClass('disabled');
     timer = startTimer();
     }
   //What happens when #reset is pressed
   function reset() {
    clearInterval(timer);
     working = false;
-    workTime = 0;
-    breakTime = 0;
+    workTime = 25;
+    // breakTime = 0;
     checkStatus();
     // $('.jumbotron').css('visibility', 'hidden');
     $('#msg').html("");
