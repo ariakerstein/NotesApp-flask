@@ -1,5 +1,6 @@
 Notes = window.Notes || {};
 
+//setup event handlers here
 (function(exports, $) {
   function Editor() {
     this.form = $('form#note-form');
@@ -15,6 +16,7 @@ Notes = window.Notes || {};
     this.editor.focus();
   }
 
+//setup masonry
   Editor.prototype.setupMasonry = function() {
     var self = this;
     imagesLoaded(this.container, function() {
@@ -22,6 +24,9 @@ Notes = window.Notes || {};
     });
   }
 
+//setupNotes is very minimal and is responsible for binding an event handler to 
+//the close button in the corner of each note on display. When clicked this should trigger an 
+//Ajax request that archives the note, then removes it from the DOM. 
   Editor.prototype.setupNotes = function() {
     var self = this;
     $('a.archive-note').on('click', this.archiveNote);
@@ -55,6 +60,8 @@ Notes = window.Notes || {};
   }
 
 //this adds the note:
+//The addNote() function is responsible for submitting a note via Ajax, 
+//then adding the rendered content to the list of other notes in the DOM.
   Editor.prototype.addNote = function() {
     var self = this;
     this.editor.css('color', '#464545');
@@ -66,7 +73,7 @@ Notes = window.Notes || {};
         self.container.prepend(listElem);
         self.container.masonry('prepended', listElem);
       } else {
-        alert("Please add some content to your note"); //test alert
+        $('#myAlert-fail').show() //test alert
         // self.editor.css('color', '#dd1111');
       }
     });
