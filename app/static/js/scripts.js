@@ -24,11 +24,13 @@ function checkStatus() {
     $('#start').removeClass('disabled');
     $('#pause').addClass('disabled');
     $('#reset').addClass('disabled');
+    $('#myAlert').hide();
     } else {
     $('#pause').removeClass('disabled');
     $('#reset').removeClass('disabled');
     $('#start').addClass('disabled');
     $('#save').addClass('disabled');
+    $('#myAlert').hide();
     }
 }
 //End Check Status
@@ -51,7 +53,9 @@ function startTimer() {
     workTime--;
     if (workTime < 0) {
       clearInterval(timer);
-      alert("You're done!");
+      $('#save').removeClass('disabled');
+      // alert("You're done!");
+      $('#myAlert').show();
     } else {
       showTime(workTime);
     }
@@ -66,6 +70,7 @@ function startTimer() {
   workTime = $('#work').val()*60;
     // breakTime = $('#break').val()*60;
    working = true;
+   $('#myAlert').hide();
    checkStatus();    
     timer = startTimer();
  } 
@@ -80,6 +85,7 @@ function startTimer() {
     $('#pause').removeClass('pause');
     $('.resume').click(resume);
     $('#save').removeClass('disabled');
+    $('#myAlert').hide();
     // $('#save').unbind().click(resume);
    }
   
@@ -91,6 +97,7 @@ function startTimer() {
     $('#pause').removeClass('resume');
 	$('#save').addClass('disabled');
     timer = startTimer();
+    $('#myAlert').hide();
     }
   //What happens when #reset is pressed
   function reset() {
