@@ -5423,8 +5423,8 @@ button.close {
 }
 .modal-backdrop {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 100;
+  right: 100;
   bottom: 0;
   left: 0;
   z-index: 1040;
@@ -5432,7 +5432,7 @@ button.close {
 }
 .modal-backdrop.fade {
   filter: alpha(opacity=0);
-  opacity: 0;
+  opacity: 80;
 }
 .modal-backdrop.in {
   filter: alpha(opacity=50);
@@ -5476,6 +5476,7 @@ button.close {
   height: 50px;
   overflow: scroll;
 }
+
 @media (min-width: 768px) {
   .modal-dialog {
     width: 600px;
