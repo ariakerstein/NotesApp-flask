@@ -27,13 +27,15 @@ function checkStatus() {
     $('#myAlert').hide();
     $('#myAlert-fail').hide()
     $('#save').hide();
+    $('.col-xs-6').show();
     } else {
     $('#pause').removeClass('disabled');
     $('#reset').removeClass('disabled');
     $('#start').addClass('disabled');
     $('#save').hide();
     $('#myAlert').hide();
-    $('#myAlert-fail').hide()
+    $('#myAlert-fail').hide();
+    $('.col-xs-6').hide();
     }
 }
 //End Check Status
