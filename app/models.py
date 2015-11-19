@@ -17,6 +17,7 @@ class Note(Model):
     class Meta:
         database = db
 
+# html() simply runs the content through markdown, converts links into objects where possible,
     def html(self):
         html = parse_html(
             markdown(self.content),

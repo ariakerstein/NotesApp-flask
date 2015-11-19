@@ -28,6 +28,7 @@ function checkStatus() {
     $('#myAlert-fail').hide()
     $('#save').hide();
     $('.col-xs-6').show();
+    // $('#result').hide();
     } else {
     $('#pause').removeClass('disabled');
     $('#reset').removeClass('disabled');
@@ -36,6 +37,7 @@ function checkStatus() {
     $('#myAlert').hide();
     $('#myAlert-fail').hide();
     $('.col-xs-6').hide();
+    // $('#result').show();
     }
 }
 //End Check Status
@@ -62,6 +64,7 @@ function startTimer() {
       // alert("You're done!");
       $('#myAlert').show();
       $('#myAlert-fail').hide()
+      // $('#result').show();
     } else {
       showTime(workTime);
     }
@@ -78,6 +81,7 @@ function startTimer() {
    working = true;
    $('#myAlert').hide();
    $('#myAlert-fail').hide()
+   // $('#result').show();
    checkStatus();    
     timer = startTimer();
  } 
@@ -94,6 +98,7 @@ function startTimer() {
     $('#save').show();
     $('#myAlert').hide();
     $('#myAlert-fail').hide()
+    // $('#result').show();
     // $('#save').unbind().click(resume);
    }
   
@@ -106,6 +111,7 @@ function startTimer() {
     timer = startTimer();
     $('#myAlert').hide();
     $('#myAlert-fail').hide()
+    // $('#result').show();
     }
   //What happens when #reset is pressed
   function reset() {
@@ -118,6 +124,7 @@ function startTimer() {
     $('#msg').html("");
     $('#myAlert').hide();
     $('#myAlert-fail').hide()
+    // $('#result').hide();
   }
   //Break Timer
 //   function breakTimer() {
@@ -147,6 +154,14 @@ function startTimer() {
   
 }); //End of DocReady
 
+    function displayOutput() {
+         var input = document.getElementById("userInput").value;
+         if (input.length === 0) {
+                flash("Please enter a valid input");
+                return;
+            }
+         document.getElementById("result").innerHTML = "Current block: " + input;
+        }
 
 
 // ORIGINAL TIMER START
